@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autenticación</title>
+<!--
+    This template can be used for creating apps that require user login and user registration before starting actual app.
+--> 
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0;" />
+    <meta charset="utf-8"/>
+    
+    <link rel="stylesheet" type="text/css" href="appframework/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="appframework/icons.css" />
+    <script type="text/javascript" charset="utf-8" src="appframework/appframework.ui.min.js"></script>
+
+<!-- Required if packaging to native app using Intel XDK -->    
+    <script src="intelxdk.js"></script>
+    <script src="xhr.js"></script>
+    <script>    
+        function onDeviceReady(){ 
+            $.ui.launch();
+            intel.xdk.device.hideSplashScreen();
+        }
+        document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+    </script>
+<!-- end Intel XDK code -->
+    
+    <script>   
+        $.ui.autoLaunch = false; 
+        $.ui.backButtonText = "Atras";
+    
+        $(document).ready(function(){
+            $.ui.launch();
+            
+            // setup signin and signup button events
+            $("#login").on("click", function(){
+                signIn();
+            });
+            
+            $("#register").on("click", function(){
+                signUp();
+            });
+        });
+                
+        function signIn(){
+            
+            // sigin code here
+            
+            $.ui.loadContent("main", null, null, "fade");
+        }
+                
+        function signUp(){
+        
+            // signup code here
+            
+            $.ui.loadContent("main", null, null, "fade");
+        }   
+                
+        function startApp(){
+            // clears all back button history
+            $.ui.clearHistory();  
+            
+            // your app code here
+        }
+
+    </script>   
+</head>
+<body> 
+<div id="afui">
+    
+    <div id="content" style=""> 
+        
+    <!-- Views -->
+        
+        <!-- Welcome View -->
+        <div class="panel" title="Bienvenidos" id="page1" data-header="none" data-footer="none" selected="true">
+            <div style="text-align:center">
+            <br>
+            <br>
+            <h1>Bienvenidos</h1>
+            <br>
+            <br>
+            <p>Este es nuestro primer avance en la aplicacion mobil...</p>
+            <br>
+            <br>
+            </div>    
+            <ul class="list inset">
+                <li><a href="#signin" class="icon user" style="text-align:center">Iniciar</a></li>
+                <li><a href="#signup" class="icon pencil" style="text-align:center">Registrarse</a></li>
+            </ul>
+        </div>
+        
+        <!-- Login View -->
+        <div class="panel" title="Autenticarse" id="signin" data-footer="none">
+            <div style="text-align:center">
+            <br>
+            <br>
+            <p>Por favor digita tus datos de acceso</p>
+            <br>
+            <br>
+            </div>
+            <input name="username" type="text" placeholder="Usuario" />
+            <input name="password" type="password" placeholder="Contraseña" />
+            <a class="button block green" href="#" id="login">Iniciar</a>
+        </div>
+        
+        <!-- Register View -->
+        <div class="panel" title="Registro" id="signup" data-footer="none">
+            <div style="text-align:center">
+            <br>
+            <br>
+            <p>Por favor ingrese lo siguientes datos</p>
+            <br>
+            <br>
+            </div>
+            <input name="name" type="text" placeholder="Nombre" />
+            <input name="email" type="email" placeholder="Correo Electronico" />
+            <input name="username" type="text" placeholder="Usuario" />
+            <input name="password" type="password" placeholder="Contraseña" />
+            <input name="password2" type="password" placeholder="Confirmar Contraseña" />
+            <a class="button block green" href="#" id="register">Enviar</a>
+        </div>
+        
+        <!-- Main App View -->
+        <div class="panel" title="Correcto" id="main" data-load="startApp">
+            <p>Gracias por ingresar a nuestra aplicación...</p>
+        </div>
+        
+    </div>
+
+</div>
+</body>
+</html>    
